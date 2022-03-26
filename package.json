@@ -1,0 +1,31 @@
+{
+  "name": "william_mary_hackathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://0xsapphir3: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@github.com/0xsapphir3/William_Mary_Hackathon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0xsapphir3/William_Mary_Hackathon/issues"
+  },
+  "homepage": "https://github.com/0xsapphir3/William_Mary_Hackathon#readme",
+  "dependencies": {
+    "@types/node": "^17.0.23",
+    "@types/node-fetch": "2",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "fs": "^0.0.1-security",
+    "node-fetch": "2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
