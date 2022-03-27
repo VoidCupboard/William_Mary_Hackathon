@@ -1,6 +1,9 @@
 <template>
 <div class="coursesections flex items-center justify-center absolute h-full w-full">
-    <div class="text-3xl">Select a term</div>
+    <div class="wrapper">
+        <div class="text-3xl">All the available courses sections</div>
+        {{coursessections}}
+    </div>
 </div>    
 </template>
 
@@ -8,16 +11,28 @@
 
 </style>
 
-<script>
+<script lang="ts">
 import { ref } from "vue";
+import { useRoute } from 'vue-router';
 
 export default {
     setup() {
-        const termInfo = ref<any>("");
-        
-            // async () => {
-            //     const res = await 
-            // }
+        const coursessections = ref();
+        const route = useRoute();
+
+        (
+            async () => {
+                console.log("http://localhost:3001/coursesection/" + route.params.id)
+
+                const res = await fetch("http://localhost:3001/coursesection/" + route.params.id)
+
+                coursessections.value = await res.json()
+            }
+        )()
+
+        return {
+            coursessections
+        }
     },
 }
 </script>

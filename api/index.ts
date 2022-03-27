@@ -12,7 +12,7 @@ app.get("/activeterms", async (req, res) => {
         {
             method: "GET",
             headers: {
-                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzNzQ4MjUsImlhdCI6MTY0ODM3MzAyNSwibmJmIjoxNjQ4MzczMDI1LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.D04LKv_VoR4fqMCbjx71woJO8qQw1tfpRD9-96c3Ie0"
+                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzODMwMTksImlhdCI6MTY0ODM4MTIxOSwibmJmIjoxNjQ4MzgxMjE5LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.9qgL4mkAwlKgFNfF34mVPN5TKzVOQK0bxVBIwmhcXmk"
             },
         }
     );
@@ -26,7 +26,7 @@ app.get("/subjectlist", async (req, res) => {
         {
             method: "GET",
             headers: {
-                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzNzQ4MjUsImlhdCI6MTY0ODM3MzAyNSwibmJmIjoxNjQ4MzczMDI1LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.D04LKv_VoR4fqMCbjx71woJO8qQw1tfpRD9-96c3Ie0",
+                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzODMwMTksImlhdCI6MTY0ODM4MTIxOSwibmJmIjoxNjQ4MzgxMjE5LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.9qgL4mkAwlKgFNfF34mVPN5TKzVOQK0bxVBIwmhcXmk",
             }
         }
     );
@@ -41,12 +41,29 @@ app.get("/coursesection/:id", async (req, res) => {
         {
             method: "GET",
             headers: {
-                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzNzQ4MjUsImlhdCI6MTY0ODM3MzAyNSwibmJmIjoxNjQ4MzczMDI1LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.D04LKv_VoR4fqMCbjx71woJO8qQw1tfpRD9-96c3Ie0",
+                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzODMwMTksImlhdCI6MTY0ODM4MTIxOSwibmJmIjoxNjQ4MzgxMjE5LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.9qgL4mkAwlKgFNfF34mVPN5TKzVOQK0bxVBIwmhcXmk",
             },
         }
     );
 
     res.status(200).json(await _res.json());
 });
+
+app.get("/opencourses/:subject/:term", async (req, res) => {
+    const _res = await fetch(
+        "https://openapi.it.wm.edu/courses/production/v1/opencourses/" +
+        req.params.subject + "/" + req.params.term,
+        {
+            method: "GET",
+            headers: {
+                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzODMwMTksImlhdCI6MTY0ODM4MTIxOSwibmJmIjoxNjQ4MzgxMjE5LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.9qgL4mkAwlKgFNfF34mVPN5TKzVOQK0bxVBIwmhcXmk",
+            },
+        }
+    );
+
+    res.status(200).json(await _res.json());
+});
+
+
 
 app.listen(3001);
