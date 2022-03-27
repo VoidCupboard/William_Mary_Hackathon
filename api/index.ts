@@ -20,8 +20,6 @@ const getToken = async () => {
 
     const json = await res.json()
 
-    console.log(json);
-
     return json.access_token
 }
 

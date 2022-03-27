@@ -3,6 +3,23 @@ import InteractionManager from "../utils/interactionManager";
 import fetch from "node-fetch";
 import moment from "moment";
 
+const getToken = async () => {
+  const res = await fetch("https://openapi.it.wm.edu/auth/v1/login" , {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+          client_id: "tribehacks",
+          secret_id: "E74euRJIhUcoJAf2nCDXDM8hE45KQPBOvuq7bkRRisKxb"
+      })
+  })
+
+  const json = await res.json()
+
+  return json.access_token
+}
+
 export default class SubjctList {
   constructor(interactionManager: InteractionManager) {
     interactionManager.registerSlashCommand({
@@ -18,7 +35,7 @@ export default class SubjctList {
 
       const res = await fetch("https://openapi.it.wm.edu/courses/production/v1/activeterms" , {
           headers: {
-              "Authorization": "Bearer " + process.env.ACCESS_TOKEN
+              "Authorization": "Bearer " + await getToken()
           }
       })
 

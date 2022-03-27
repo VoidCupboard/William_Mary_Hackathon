@@ -1,59 +1,59 @@
-import { Client , Intents, Message } from "discord.js";
+import { Client, Intents, Message } from "discord.js";
 import dotenv from "dotenv";
 import fs from "fs";
 import InteractionManager from "./utils/interactionManager";
 
 dotenv.config({
-    path: "./.env"
-})
-
-const client = new Client({
-    intents: [Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS]
+    path: "./.env",
 });
 
-client.on("ready" , async () => {
-  const guild = await client.guilds.fetch("952505983895216128")
+const client = new Client({
+    intents: [Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS],
+});
 
-  client.user?.setStatus("idle")
+client.on("ready", async () => {
+    const guild = await client.guilds.fetch("952505983895216128");
 
-  client.user?.setPresence({
-      "status": "idle",
-      "activities": [
-          {
-            name: "/help",
-              type: "WATCHING"
-          }
-      ]
-  })
+    client.user?.setStatus("idle");
 
-  const interactionManager = new InteractionManager(guild)
+    client.user?.setPresence({
+        status: "idle",
+        activities: [
+            {
+                name: "/help",
+                type: "WATCHING",
+            },
+        ],
+    });
 
-  client.on("interactionCreate" , interactionManager.onInteractionCreate)
+    const interactionManager = new InteractionManager(guild);
 
-  fs.readdir("./commands" , async (err , data: Array<String>) => {
-    for(let file of data) {
-      console.log("./commands/" + file)
-          const command = (await import("./commands/" + file))
+    client.on("interactionCreate", interactionManager.onInteractionCreate);
 
-          console.log(command)
+    fs.readdir("./commands", async (err, data: Array<String>) => {
+        for (let file of data) {
+            console.log("./commands/" + file);
+            const command = await import("./commands/" + file);
 
-          new command.default(interactionManager);
+            console.log(command);
+
+            new command.default(interactionManager);
         }
-    })
-})
+    });
+});
 
-client.on("message" , (msg: Message) => {
-    const guild = msg.guild
+client.on("message", (msg: Message) => {
+    const guild = msg.guild;
 
-//     guild?.systemChannel?.send(
-//         `
-// Hi @everyone!
-//
-// Thanks for inviting me to the server :)
-//
-// You can get a list of commands available by sending /help.
-//         `
-//     )
-})
+    //     guild?.systemChannel?.send(
+    //         `
+    // Hi @everyone!
+    //
+    // Thanks for inviting me to the server :)
+    //
+    // You can get a list of commands available by sending /help.
+    //         `
+    //     )
+});
 
-client.login(process.env.TOKEN)
+client.login(process.env.TOKEN);
