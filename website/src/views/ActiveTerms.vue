@@ -25,7 +25,7 @@
 }
 </style>
 
-<script lang="ts">
+<script >
 import {
     ref
 } from "vue"

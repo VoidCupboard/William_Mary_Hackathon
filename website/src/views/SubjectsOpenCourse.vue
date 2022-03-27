@@ -4,7 +4,7 @@
 </div>
 </template>
 
-<script lang="ts">
+<script >
 import { ref } from '@vue/reactivity';
 import { useRoute } from 'vue-router'
 export default {

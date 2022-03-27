@@ -2,7 +2,7 @@
     
 </template>
 
-<script lang="ts">
+<script >
 import { useRoute } from 'vue-router'
 export default {
     setup() {

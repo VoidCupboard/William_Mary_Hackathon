@@ -11,7 +11,7 @@
 
 </style>
 
-<script lang="ts">
+<script >
 import { ref } from "vue";
 import { useRoute } from 'vue-router';
 

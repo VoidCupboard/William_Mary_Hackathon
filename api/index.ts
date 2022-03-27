@@ -1,5 +1,5 @@
-import express from "express";
-import cors from "cors";
+import * as express from "express";
+import * as cors from "cors";
 import fetch from "node-fetch";
 
 const app = express();
@@ -25,7 +25,7 @@ const getToken = async () => {
     return json.access_token
 }
 
-app.get("/activeterms", async (req, res) => {
+app.get("/activeterms", async (req: express.Request, res: express.Response) => {
     const _res = await fetch(
         "https://openapi.it.wm.edu/courses/production/v1/activeterms",
         {
@@ -39,7 +39,7 @@ app.get("/activeterms", async (req, res) => {
     res.status(200).json(await _res.json());
 });
 
-app.get("/subjectlist", async (req, res) => {
+app.get("/subjectlist", async (req: express.Request, res: express.Response) => {
     const _res = await fetch(
         "https://openapi.it.wm.edu/courses/production/v1/subjectlist",
         {
@@ -53,7 +53,7 @@ app.get("/subjectlist", async (req, res) => {
     res.status(200).json(await _res.json());
 });
 
-app.get("/coursesection/:id", async (req, res) => {
+app.get("/coursesection/:id", async (req: express.Request, res: express.Response) => {
     const _res = await fetch(
         "https://openapi.it.wm.edu/courses/production/v1/coursesections/" +
         req.params.id,
@@ -68,7 +68,7 @@ app.get("/coursesection/:id", async (req, res) => {
     res.status(200).json(await _res.json());
 });
 
-app.get("/opencourses/:subject/:term", async (req, res) => {
+app.get("/opencourses/:subject/:term", async (req: express.Request, res: express.Response) => {
     const _res = await fetch(
         "https://openapi.it.wm.edu/courses/production/v1/opencourses/" +
         req.params.subject + "/" + req.params.term,

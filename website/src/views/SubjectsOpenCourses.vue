@@ -18,7 +18,7 @@
 </div>
 </template>
 
-<script lang="ts">
+<script >
 import { ref } from '@vue/reactivity';
 import { useRouter } from "vue-router";
 
