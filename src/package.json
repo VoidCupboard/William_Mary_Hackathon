@@ -19,12 +19,20 @@
   },
   "homepage": "https://github.com/0xsapphir3/William_Mary_Hackathon#readme",
   "dependencies": {
+    "@types/easy-table": "^1.2.0",
+    "@types/javascript-time-ago": "^2.0.3",
+    "@types/moment": "^2.13.0",
     "@types/node": "^17.0.23",
     "@types/node-fetch": "2",
+    "ascii-table3": "^0.7.4",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
+    "easy-table": "^1.2.0",
     "fs": "^0.0.1-security",
+    "javascript-time-ago": "^2.3.13",
+    "moment": "^2.29.1",
     "node-fetch": "2",
+    "table": "^6.8.0",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   }
