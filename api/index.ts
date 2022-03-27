@@ -6,13 +6,32 @@ const app = express();
 
 app.use(cors({ origin: "*" }));
 
+const getToken = async () => {
+    const res = await fetch("https://openapi.it.wm.edu/auth/v1/login" , {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            client_id: "tribehacks",
+            secret_id: "E74euRJIhUcoJAf2nCDXDM8hE45KQPBOvuq7bkRRisKxb"
+        })
+    })
+
+    const json = await res.json()
+
+    console.log(json);
+
+    return json.access_token
+}
+
 app.get("/activeterms", async (req, res) => {
     const _res = await fetch(
         "https://openapi.it.wm.edu/courses/production/v1/activeterms",
         {
             method: "GET",
             headers: {
-                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzODMwMTksImlhdCI6MTY0ODM4MTIxOSwibmJmIjoxNjQ4MzgxMjE5LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.9qgL4mkAwlKgFNfF34mVPN5TKzVOQK0bxVBIwmhcXmk"
+                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzODU2MjUsImlhdCI6MTY0ODM4MzgyNSwibmJmIjoxNjQ4MzgzODI1LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.HU2MCyr_ZHFWbfwZJJNxvzPqQbW_8EYPo93_ZuB6cfg"
             },
         }
     );
@@ -26,7 +45,7 @@ app.get("/subjectlist", async (req, res) => {
         {
             method: "GET",
             headers: {
-                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzODMwMTksImlhdCI6MTY0ODM4MTIxOSwibmJmIjoxNjQ4MzgxMjE5LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.9qgL4mkAwlKgFNfF34mVPN5TKzVOQK0bxVBIwmhcXmk",
+                "Authorization": "Bearer " + await getToken(),
             }
         }
     );
@@ -41,7 +60,7 @@ app.get("/coursesection/:id", async (req, res) => {
         {
             method: "GET",
             headers: {
-                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzODMwMTksImlhdCI6MTY0ODM4MTIxOSwibmJmIjoxNjQ4MzgxMjE5LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.9qgL4mkAwlKgFNfF34mVPN5TKzVOQK0bxVBIwmhcXmk",
+                Authorization: "Bearer " + await getToken(),
             },
         }
     );
@@ -56,7 +75,7 @@ app.get("/opencourses/:subject/:term", async (req, res) => {
         {
             method: "GET",
             headers: {
-                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgzODMwMTksImlhdCI6MTY0ODM4MTIxOSwibmJmIjoxNjQ4MzgxMjE5LCJpZGVudGl0eSI6InRyaWJlaGFja3MifQ.9qgL4mkAwlKgFNfF34mVPN5TKzVOQK0bxVBIwmhcXmk",
+                Authorization: "Bearer " + await getToken(),
             },
         }
     );
@@ -66,4 +85,4 @@ app.get("/opencourses/:subject/:term", async (req, res) => {
 
 
 
-app.listen(3001);
+app.listen(process.env.PORT || 3001);

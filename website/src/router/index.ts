@@ -5,7 +5,8 @@ import ActiveTerms from "../views/ActiveTerms.vue";
 import SubjectList from "../views/SubjectsList.vue";
 import CourseSections from "../views/CourseSections.vue";
 import CourseSection from "../views/CourseSection.vue";
-import SubjectOpenCourse from "../views/SubjectsOpenCourses.vue";
+import SubjectOpenCourses from "../views/SubjectsOpenCourses.vue";
+import SubjectOpenCourse from "../views/SubjectsOpenCourse.vue"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,7 +44,7 @@ const router = createRouter({
         {
             path: "/opencourses/subject",
             name: "Subject OpenCourse",
-            component: SubjectOpenCourse
+            component: SubjectOpenCourses
         },
         {
             path: "/opencourse/:term_id/:subject_id",
